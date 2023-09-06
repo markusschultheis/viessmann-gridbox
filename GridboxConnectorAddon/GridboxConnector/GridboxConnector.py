@@ -1,5 +1,16 @@
+#import classes we need
 import requests
 import time
+import os
+import datetime
+
+#getting path to working dir
+pwd = os.getcwd()
+file = open(pwd+'/config.json')
+
+#getting date and time
+date = str(datetime.datetime.now())
+
 class GridboxConnector:
     id_token = ""
 
@@ -40,7 +51,6 @@ class GridboxConnector:
         response = requests.get(self.live_url.format(self.gateway_id),headers=self.headers)
         if response.status_code == 200:
             response_json = response.json()
-            #print(response_json)
             return response_json
         else:
             print("Status Code {}".format(response.status_code))
